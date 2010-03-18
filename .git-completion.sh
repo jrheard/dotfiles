@@ -82,6 +82,9 @@ __gitdir ()
 # returns text to add to bash PS1 prompt (includes branch name)
 __git_ps1 ()
 {
+	if [ "$(git config --bool bash.showPS1)" == "false" ]; then
+		return
+	fi
 	local g="$(__gitdir)"
 	if [ -n "$g" ]; then
 		local r
