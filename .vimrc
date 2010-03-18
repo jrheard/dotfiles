@@ -12,29 +12,9 @@ set foldenable
 set foldlevel=100
 filetype on
 let filetype_m='objc'
-let Tlist_Auto_Open=1 
+let Tlist_Auto_Open=0
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_WinWidth = 70
-
-" stolen from http://www.glsoftware.net/blog/archives/27-Integrating-Xcode-and-VIM.html
-" update the :make command to tell Xcode to build
-set makeprg=osascript\ -e\ \"tell\ application\ \\\"Xcode\\\"\"\ -e\ \"build\"\ -e\ \"end\ tell\"
-
-function! XcodeClean()
-silent execute ':!osascript -e "tell application \"Xcode\"" -e "Clean" -e "end tell"'
-endfunction
-command! -complete=command XcodeClean call XcodeClean()
-
-function! XcodeDebug()
-silent execute '!osascript -e "tell application \"Xcode\"" -e "Debug" -e "end tell"'
-endfunction
-command! -complete=command XcodeDebug call XcodeDebug()
-
-" Command-K cleans the project
-:noremap <D-k> :XcodeClean<CR>
-" Command-Return Starts the program in the debugger
-:noremap <D-CR> :XcodeDebug<CR>
-
 
 " copy/paste of jfennel's vimrc below
 
@@ -76,10 +56,10 @@ let python_highlight_space_errors = 0
 "" Status line
 "set laststatus=2 "Always have a status line
 "set showtabline=2 " Always have a tab bar
-set statusline=%2n:*%-32.32f%*\ \ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
+set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
 
 :map <F7> :!cd ~/pg/loc;make<CR>
-:map <F12> :TlistToggle <CR>
+:map <F4> :TlistToggle <CR>
 " Python comment/uncomment
 map <F2> :s/^/#/<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
