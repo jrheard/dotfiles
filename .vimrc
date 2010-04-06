@@ -9,7 +9,7 @@ set number
 set foldenable
 set foldlevel=100
 filetype on
-let filetype_m='objc'
+filetype plugin on
 let Tlist_Auto_Open=0
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_WinWidth = 70
@@ -71,3 +71,14 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 
 autocmd VimEnter * NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
+
+map <F6> :execute Clean_up()<CR> :source $HOME/.vimrc<CR>
+" Cleanup
+function! Clean_up()
+set visualbell&
+set background&
+set tabstop&
+set showmatch&
+set showcmd&
+set autowrite&
+endfunction
