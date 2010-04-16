@@ -5,6 +5,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 colorscheme vibrantink
 colorscheme wombat
+
 set number
 set foldenable
 set foldlevel=100
@@ -14,10 +15,13 @@ let Tlist_Auto_Open=0
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_WinWidth = 70
 
+autocmd VimEnter * NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
 " copy/paste of jfennel's vimrc below
 
 " Indenting options
-set paste        " Allow pasting from OS X
+set paste
 set autoindent   " Keep the indent level when hitting Return
 set smartindent  " Use smart indenting (mostly useful for C/C++ files)
 set cindent      " Don't indent Python really poorly
@@ -52,8 +56,8 @@ let python_highlight_space_errors = 0
 "autocmd FileType python source ~/.vim/python_fold.vim
 
 "" Status line
-"set laststatus=2 "Always have a status line
-"set showtabline=2 " Always have a tab bar
+set laststatus=2 "Always have a status line
+set showtabline=2 " Always have a tab bar
 set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
 
 :map <F7> :!cd ~/pg/loc;make<CR>
@@ -69,9 +73,9 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 
 ":lvimgrep "def " % followed by :lw = IDE-like function lists without massive plugins
 
-autocmd VimEnter * NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
 
+" for some reason, the way this vimrc is set up completely breaks :set nopaste in a fascinating way
+" the below command makes f6 the new nopaste, and basically just re-soures this .vimrc
 map <F6> :execute Clean_up()<CR> :source $HOME/.vimrc<CR>
 " Cleanup
 function! Clean_up()
@@ -81,4 +85,12 @@ set tabstop&
 set showmatch&
 set showcmd&
 set autowrite&
+endfunction
+
+map <F5> :execute JSify()<CR>
+function! JSify()
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set noexpandtab
 endfunction
