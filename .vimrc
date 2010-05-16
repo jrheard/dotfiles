@@ -79,18 +79,18 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 map <F6> :execute Clean_up()<CR> :source $HOME/.vimrc<CR>
 " Cleanup
 function! Clean_up()
-set visualbell&
-set background&
-set tabstop&
-set showmatch&
-set showcmd&
-set autowrite&
+setlocal visualbell&
+setlocal background&
+setlocal tabstop&
+setlocal showmatch&
+setlocal showcmd&
+setlocal autowrite&
 endfunction
 
 map <F5> :execute JSify()<CR>
 function! JSify()
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set noexpandtab
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal noexpandtab
 endfunction
