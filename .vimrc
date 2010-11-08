@@ -3,6 +3,12 @@ au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+set gdefault " always do a global replace instead of just a first-occurrence-on-the-line replace
+
+" move up/down by screen lines instead of file lines.
+nnoremap j gj
+nnoremap k gk
+
 colorscheme vibrantink
 colorscheme wombat
 set number
@@ -37,12 +43,15 @@ set hlsearch
 set wildmenu    " Get a cool menu for tab completing file names
 set lz          " Don't redraw the screen in the middle of executing macros
 set visualbell t_vb=
+set ignorecase
 set smartcase   " Ignore case, unless caps are used in the search
 behave xterm    " Just in case...
 set lbr         " Wrap only at word boundaries (default is at any character)
 set cursorline
 set showcmd     " show partial commands in status line and
                                 " selected characters/lines in visual mode
+
+
 
 " Syntax Highlighting
 syntax enable   " Who wouldn't want syntax highlighting?
@@ -71,3 +80,11 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 
 autocmd VimEnter * NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
+
+"ctags def line as per https://trac.yelpcorp.com/wiki/VimTips
+set tags=tags;$HOME
+
+
+" switch tabs
+map = gt
+map - gT
