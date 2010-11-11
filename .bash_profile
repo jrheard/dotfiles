@@ -1,11 +1,18 @@
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$HOME/dev/moody_social/scripts:$PATH
 
 export EDITOR="/usr/bin/vim"
 export TERM=xterm-color
 
+# virtualenv goodness
+export WORKON_HOME=~/envs
+source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PIP_RESPECT_VIRTUALENV=true
+
+
 alias ls='ls -G'
 alias ll="ls -hl"
- alias screen='TERM=screen-256color screen'
+alias screen='TERM=screen-256color screen'
 
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
@@ -20,3 +27,6 @@ export PS1="[\[\033[1;36m\]\u$@\[\033[00m\]@\h:\[\033[1;32m\]\w\[\033[00m\]]\[\0
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
+
+# for moodj dev
+alias sb="/Applications/Songbird.app/Contents/MacOS/songbird -ProfileManager &"
