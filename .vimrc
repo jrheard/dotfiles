@@ -3,6 +3,12 @@ au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+set gdefault " always do a global replace instead of just a first-occurrence-on-the-line replace
+
+" move up/down by screen lines instead of file lines.
+nnoremap j gj
+nnoremap k gk
+
 colorscheme vibrantink
 colorscheme wombat
 
@@ -41,12 +47,15 @@ set hlsearch
 set wildmenu    " Get a cool menu for tab completing file names
 set lz          " Don't redraw the screen in the middle of executing macros
 set visualbell t_vb=
+set ignorecase
 set smartcase   " Ignore case, unless caps are used in the search
 behave xterm    " Just in case...
 set lbr         " Wrap only at word boundaries (default is at any character)
 set cursorline
 set showcmd     " show partial commands in status line and
                                 " selected characters/lines in visual mode
+
+
 
 " Syntax Highlighting
 syntax enable   " Who wouldn't want syntax highlighting?
@@ -73,6 +82,12 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 
 ":lvimgrep "def " % followed by :lw = IDE-like function lists without massive plugins
 
+autocmd VimEnter * NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+" switch tabs nice and easy
+map = gt
+map - gT
 
 " for some reason, the way this vimrc is set up completely breaks :set nopaste in a fascinating way
 " the below command makes f6 the new nopaste, and basically just re-soures this .vimrc

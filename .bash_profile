@@ -1,4 +1,5 @@
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$HOME/dev/moody_social/scripts:$PATH
+export PYTHONPATH=$HOME/packages:$PYTHONPATH
 
 export EDITOR="/usr/bin/vim"
 export TERM=xterm-color
@@ -23,6 +24,10 @@ export PROMPT_COMMAND='export GIT_PROMPT_BRANCH=$(__git_ps1 " (%s)"); echo -ne "
 
 export PS1="[\[\033[1;36m\]\u$@\[\033[00m\]@\h:\[\033[1;32m\]\w\[\033[00m\]]\[\033[1;33m\]\$GIT_PROMPT_BRANCH \[\033[00m\]\$ "
 
+if [ "$YELP_IN_SANDBOX" ]; then
+	export PS1="[\[\033[1;36m\]\u$@\[\033[00m\]@\h:\[\033[1;32m\]\w\[\033[00m\]]\[\033[1;33m\]\$GIT_PROMPT_BRANCH \[\033[35m\](sandbox)\[\033[00m\] \$ "
+fi
+
 # include .bashrc if it exists
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
@@ -30,3 +35,10 @@ fi
 
 # for moodj dev
 alias sb="/Applications/Songbird.app/Contents/MacOS/songbird -ProfileManager &"
+
+# screen ssh-agent forwarding
+test /tmp/ssh-agent-$USER-screen
+test $SSH_AUTH_SOCK
+if [ "$SSH_AUTH_SOCK" != "/tmp/ssh-agent-$USER-screen" ] && [ ! "/tmp/ssh-agent-$USER-screen" -ef "$SSH_AUTH_SOCK" ]; then
+	ln -sf "$SSH_AUTH_SOCK" "/tmp/ssh-agent-$USER-screen"
+fi
