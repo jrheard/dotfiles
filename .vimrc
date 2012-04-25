@@ -3,6 +3,8 @@ au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+call pathogen#infect()
+
 set gdefault " always do a global replace instead of just a first-occurrence-on-the-line replace
 
 " move up/down by screen lines instead of file lines.
@@ -11,23 +13,19 @@ nnoremap k gk
 
 colorscheme vibrantink
 colorscheme wombat
-
 set number
 set foldenable
 set foldlevel=100
 filetype on
-filetype plugin on
+let filetype_m='objc'
 let Tlist_Auto_Open=0
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_WinWidth = 70
-
-autocmd VimEnter * NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " copy/paste of jfennel's vimrc below
 
 " Indenting options
-set paste
+set paste        " Allow pasting from OS X
 set autoindent   " Keep the indent level when hitting Return
 set smartindent  " Use smart indenting (mostly useful for C/C++ files)
 set cindent      " Don't indent Python really poorly
@@ -65,9 +63,9 @@ let python_highlight_space_errors = 0
 "autocmd FileType python source ~/.vim/python_fold.vim
 
 "" Status line
-set laststatus=2 "Always have a status line
-set showtabline=2 " Always have a tab bar
-set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
+"set laststatus=2 "Always have a status line
+"set showtabline=2 " Always have a tab bar
+set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ #warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
 
 :map <F7> :!cd ~/pg/loc;make<CR>
 :map <F4> :TlistToggle <CR>
@@ -82,30 +80,15 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 
 ":lvimgrep "def " % followed by :lw = IDE-like function lists without massive plugins
 
-autocmd VimEnter * NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '*templates/*.py']
 
-" switch tabs nice and easy
 map = gt
 map - gT
 
-" for some reason, the way this vimrc is set up completely breaks :set nopaste in a fascinating way
-" the below command makes f6 the new nopaste, and basically just re-soures this .vimrc
-map <F6> :execute Clean_up()<CR> :source $HOME/.vimrc<CR>
-" Cleanup
-function! Clean_up()
-set visualbell&
-set background&
-set tabstop&
-set showmatch&
-set showcmd&
-set autowrite&
-endfunction
+if filereadable(".vim.custom")
+    exe 'source' ".vim.custom"
+endif
 
-map <F5> :execute JSify()<CR>
-function! JSify()
-setlocal tabstop=2
-setlocal softtabstop=2
-setlocal shiftwidth=2
-setlocal noexpandtab
-endfunction
+set wildignore=*.pyc,*templates/*.py,build,aws,logs/tmp*
+let g:CommandTCancelMap='<Esc>'
+let g:CommandTMaxFiles=999999
