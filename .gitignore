@@ -1,7 +1,0 @@
-*.swp
-*.swo
-*.pyc
-.DS_Store
-.svn
-.sass-cache
-.vim.custom

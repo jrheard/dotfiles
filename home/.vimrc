@@ -3,6 +3,14 @@ au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+call pathogen#infect()
+
+set gdefault " always do a global replace instead of just a first-occurrence-on-the-line replace
+
+" move up/down by screen lines instead of file lines.
+nnoremap j gj
+nnoremap k gk
+
 colorscheme vibrantink
 colorscheme wombat
 set number
@@ -11,7 +19,7 @@ set foldlevel=100
 filetype on
 let filetype_m='objc'
 let Tlist_Auto_Open=0
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_WinWidth = 70
 
 " copy/paste of jfennel's vimrc below
@@ -37,12 +45,15 @@ set hlsearch
 set wildmenu    " Get a cool menu for tab completing file names
 set lz          " Don't redraw the screen in the middle of executing macros
 set visualbell t_vb=
+set ignorecase
 set smartcase   " Ignore case, unless caps are used in the search
 behave xterm    " Just in case...
 set lbr         " Wrap only at word boundaries (default is at any character)
 set cursorline
 set showcmd     " show partial commands in status line and
                                 " selected characters/lines in visual mode
+
+
 
 " Syntax Highlighting
 syntax enable   " Who wouldn't want syntax highlighting?
@@ -54,7 +65,7 @@ let python_highlight_space_errors = 0
 "" Status line
 "set laststatus=2 "Always have a status line
 "set showtabline=2 " Always have a tab bar
-set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
+set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ #warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
 
 :map <F7> :!cd ~/pg/loc;make<CR>
 :map <F4> :TlistToggle <CR>
@@ -69,5 +80,15 @@ map <F3> :s/^#//<CR>:/asdfnvaewontgaoghnsdfafd<CR>
 
 ":lvimgrep "def " % followed by :lw = IDE-like function lists without massive plugins
 
-autocmd VimEnter * NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '*templates/*.py']
+
+map = gt
+map - gT
+
+if filereadable(".vim.custom")
+    exe 'source' ".vim.custom"
+endif
+
+set wildignore=*.pyc,*templates/*.py,build,aws,logs/tmp*
+let g:CommandTCancelMap='<Esc>'
+let g:CommandTMaxFiles=999999
