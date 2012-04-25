@@ -1,0 +1,11 @@
+[user]
+	name = jrheard
+	email = jrheard@yelp.com
+[core]
+	excludesfile = /nail/home/jrheard/.gitignore
+[color]
+	ui = auto
+[alias]
+	lol = log --pretty=oneline --abbrev-commit --graph --decorate
+[merge]
+	conflictstyle = diff3

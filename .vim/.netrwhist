@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/nail/home/jrheard/pg/yelp-main/mobile_cmds'
+let g:netrw_dirhist_2='/nail/home/jrheard/pg/yelp-main/yelp/logic/activity_feed'
+let g:netrw_dirhist_3='/nail/home/jrheard/pg/yelp-main/cmds'
+let g:netrw_dirhist_4='/nail/home/jrheard/pg/yelp-main/yelp/logic/user_removal'
+let g:netrw_dirhist_5='/nail/home/jrheard/pg/yelp-main/yelp/tests/logic'
+let g:netrw_dirhist_6='/nail/home/jrheard/pg/yelp-main/yelp/logic/activity_feed'
