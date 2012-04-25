@@ -1,32 +1,11 @@
-[color]
-    ui = true
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow
-	frag = magenta
-	old = red
-	new = green
-    whitespace = red reverse
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
 [user]
 	name = jrheard
-	email = jrheard@cs.stanford.edu
+	email = jrheard@yelp.com
 [core]
-	autocrlf = input
-	excludesfile = /Users/jrheard/.gitignore
-	whitespace = trailing-space,space-before-tab,fix,-indent-with-non-tab,cr-at-eol
+	excludesfile = /nail/home/jrheard/.gitignore
+[color]
+	ui = auto
 [alias]
 	lol = log --pretty=oneline --abbrev-commit --graph --decorate
-	unstage = reset HEAD
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	lg = log -p
+[merge]
+	conflictstyle = diff3
