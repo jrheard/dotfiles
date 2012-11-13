@@ -5,6 +5,8 @@ call pathogen#infect()
 colorscheme vibrantink
 colorscheme wombat
 
+filetype plugin indent on
+
 " Indenting options
 set autoindent   " Keep the indent level when hitting Return
 set tabstop=4    " Make tabs appear four spaces wide (default is 8 spaces)
