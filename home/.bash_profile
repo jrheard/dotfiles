@@ -1,5 +1,7 @@
 export EDITOR="/usr/bin/vim"
 
+export PATH=$HOME/bin:$PATH
+
 # virtualenv goodness
 #source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/envs
