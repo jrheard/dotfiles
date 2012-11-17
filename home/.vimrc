@@ -42,6 +42,7 @@ nnoremap k gk
 
 map = gt
 map - gT
+let mapleader=","
 
 " Syntax Highlighting
 syntax enable
