@@ -46,7 +46,7 @@ let mapleader=","
 
 " "kinesis" tab-switching keys
 command KI map - gt | map = gT
-" " "normal keybaord" tab-switching keys
+" "normal keyboard" tab-switching keys
 command KN map = gt | map - gT
 
 " Syntax Highlighting
@@ -71,3 +71,5 @@ endif
 let g:vimclojure#ParenRainbow=1
 let g:vimclojure#DynamicHighlighting=1
 let g:vimclojure#HighlightBuiltins=1
+
+let g:slime_target = "tmux"
