@@ -52,8 +52,6 @@ command KN map = gt | map - gT
 " Syntax Highlighting
 syntax enable
 let python_highlight_all = 1
-"let python_highlight_indent_errors = 0
-"let python_highlight_space_errors = 0
 
 set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ #warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
 
@@ -68,8 +66,11 @@ if filereadable(".vim.custom")
     exe 'source' ".vim.custom"
 endif
 
-let g:vimclojure#ParenRainbow=1
-let g:vimclojure#DynamicHighlighting=1
-let g:vimclojure#HighlightBuiltins=1
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
-let g:slime_target = "tmux"
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fact$']
+let g:clojure_fuzzy_indent_blacklist = ['^with-meta$', '-fn$']
