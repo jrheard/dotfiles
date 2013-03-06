@@ -1,11 +1,24 @@
 set nocompatible
 
-call pathogen#infect()
-
 colorscheme vibrantink
 colorscheme wombat
 
 filetype plugin indent on
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'airblade/vim-gitgutter'
+Bundle 'avakhov/vim-yaml'
+Bundle 'gmarik/vundle'
+Bundle 'guns/vim-clojure-static'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-foreplay'
+Bundle 'vim-scripts/Git-Branch-Info'
+Bundle 'vim-scripts/paredit.vim'
+Bundle 'wincent/Command-T'
+
 
 " Indenting options
 set autoindent   " Keep the indent level when hitting Return
