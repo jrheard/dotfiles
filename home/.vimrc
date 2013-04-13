@@ -10,6 +10,7 @@ call vundle#rc()
 
 Bundle 'airblade/vim-gitgutter'
 Bundle 'avakhov/vim-yaml'
+Bundle 'fwolanski/vim-clojure-conceal'
 Bundle 'gmarik/vundle'
 Bundle 'guns/vim-clojure-static'
 Bundle 'scrooloose/nerdtree'
@@ -17,6 +18,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-foreplay'
 Bundle 'vim-scripts/Git-Branch-Info'
 Bundle 'vim-scripts/paredit.vim'
+Bundle 'vim-scripts/rainbow_parentheses.vim'
 Bundle 'wincent/Command-T'
 
 
