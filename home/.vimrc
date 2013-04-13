@@ -30,8 +30,8 @@ set noexpandtab
 
 " UI stuff
 set showmatch   " Show matching parens as they come up
-set ruler       " Show the column number in the status bar
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+"set ruler       " Show the column number in the status bar
+"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set wildmenu    " Get a cool menu for tab completing file names
 set lz          " Don't redraw the screen in the middle of executing macros
 set visualbell t_vb=
@@ -51,6 +51,9 @@ au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
 " move up/down by screen lines instead of file lines.
 nnoremap j gj
 nnoremap k gk
@@ -68,8 +71,6 @@ command KN map = gt | map - gT
 syntax enable
 let python_highlight_all = 1
 
-set statusline=%2n:*%-32.32f%*%{GitBranchInfoString()}\ \ #warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %2*%r%m%*\ %=%y\ %15(%l/%L:%c\ (%2p%%)%)
-
 let NERDTreeIgnore=['\.pyc$', '\~$', '*templates/*.py']
 
 " Cmd-T plugin options
@@ -80,3 +81,26 @@ let g:CommandTMaxFiles=999999
 if filereadable(".vim.custom")
     exe 'source' ".vim.custom"
 endif
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" Powerline
+set rtp+=/nail/home/jrheard/.local/lib/python2.6/site-packages/powerline/bindings/vim
