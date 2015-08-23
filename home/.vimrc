@@ -3,24 +3,26 @@ set nocompatible
 colorscheme vibrantink
 colorscheme wombat
 
-filetype plugin indent on
-
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-Bundle 'airblade/vim-gitgutter'
-Bundle 'avakhov/vim-yaml'
-Bundle 'fwolanski/vim-clojure-conceal'
-Bundle 'gmarik/vundle'
-Bundle 'guns/vim-clojure-static'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-foreplay'
-Bundle 'vim-scripts/Git-Branch-Info'
-Bundle 'vim-scripts/paredit.vim'
-Bundle 'vim-scripts/rainbow_parentheses.vim'
-Bundle 'wincent/Command-T'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'avakhov/vim-yaml'
+Plugin 'fwolanski/vim-clojure-conceal'
+Plugin 'gmarik/vundle'
+Plugin 'guns/vim-clojure-static'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-foreplay'
+"Plugin 'vim-scripts/Git-Branch-Info'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'wincent/Command-T'
 
+call vundle#end()
+
+filetype plugin indent on
 
 " Indenting options
 set autoindent   " Keep the indent level when hitting Return
@@ -61,6 +63,9 @@ nnoremap k gk
 map = gt
 map - gT
 let mapleader=","
+
+nnoremap <Space> za
+vnoremap <Space> za
 
 " "kinesis" tab-switching keys
 command KI map - gt | map = gT
@@ -103,4 +108,6 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " Powerline
-set rtp+=/nail/home/jrheard/.local/lib/python2.6/site-packages/powerline/bindings/vim
+set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
+
+set foldenable
