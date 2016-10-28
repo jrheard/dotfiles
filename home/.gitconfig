@@ -1,6 +1,7 @@
 [user]
 	name = jrheard
 	email = jrheard@cs.stanford.edu
+	signingkey = DA8E67FD
 [core]
 	excludesfile = /nail/home/jrheard/.gitignore
 [color]
@@ -9,3 +10,5 @@
 	lol = log --pretty=oneline --abbrev-commit --graph --decorate
 [merge]
 	conflictstyle = diff3
+[commit]
+	gpgsign = true

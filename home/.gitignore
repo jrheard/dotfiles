@@ -5,3 +5,4 @@
 .svn
 .sass-cache
 .vim.custom
+node_modules

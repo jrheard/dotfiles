@@ -14,9 +14,9 @@ Plugin 'gmarik/vundle'
 Plugin 'guns/vim-clojure-static'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-foreplay'
-"Plugin 'vim-scripts/Git-Branch-Info'
-Plugin 'vim-scripts/paredit.vim'
+Plugin 'tpope/vim-classpath'
+Plugin 'tpope/vim-fireplace'
+"Plugin 'vim-scripts/paredit.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'wincent/Command-T'
 
@@ -60,8 +60,10 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 nnoremap j gj
 nnoremap k gk
 
-map = gt
-map - gT
+nnoremap + =
+
+nnoremap = gt
+nnoremap - gT
 let mapleader=","
 
 nnoremap <Space> za
@@ -110,4 +112,11 @@ au Syntax * RainbowParenthesesLoadBraces
 " Powerline
 set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
 
-set foldenable
+set nofoldenable
+
+set lispwords+=ef/defsnippet
+set lispwords+=ef/deftemplate
+set lispwords+=s/defn
+set lispwords+=go
+set lispwords+=go-loop
+set lispwords+=match

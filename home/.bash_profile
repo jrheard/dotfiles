@@ -1,6 +1,6 @@
 export EDITOR="/usr/bin/vim"
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/Library/Haskell/bin:$PATH:$HOME/depot_tools
 
 # virtualenv goodness
 #source /usr/local/bin/virtualenvwrapper.sh
@@ -28,3 +28,7 @@ fi
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
+
+alias sb='ssh -t sandbox "tmux attach"'
+
+alias run-redis="redis-server /usr/local/etc/redis.conf"
