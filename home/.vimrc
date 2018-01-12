@@ -120,3 +120,5 @@ set lispwords+=s/defn
 set lispwords+=go
 set lispwords+=go-loop
 set lispwords+=match
+
+let g:syntastic_python_checkers = ['python']
