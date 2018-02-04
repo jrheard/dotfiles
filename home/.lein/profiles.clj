@@ -1,7 +1,9 @@
 {:user {:dependencies [
                        ;[io.aviso/pretty "0.1.34"]
+                       [vvvvalvalval/scope-capture "0.1.4"]
                   [pjstadig/humane-test-output "0.8.3"]
                        [binaryage/devtools "0.9.7"]]
+        :injections [(require 'sc.api)]
         ;:injections [(require 'pjstadig.humane-test-output)
                      ;(pjstadig.humane-test-output/activate!)]
         :test-refresh {:quiet true :changes-only true}
