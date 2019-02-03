@@ -1,15 +1,18 @@
 set nocompatible
+filetype off
+
+set shell=bash " vundle doesn't work with fish
 
 colorscheme vibrantink
 colorscheme wombat
 
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'avakhov/vim-yaml'
-"Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-classpath'
@@ -63,6 +66,8 @@ let mapleader=","
 
 nnoremap <Space> za
 vnoremap <Space> za
+
+nnoremap <leader>r :RustFmt<cr>
 
 " Syntax Highlighting
 syntax enable

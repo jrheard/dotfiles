@@ -42,3 +42,5 @@ alias datomic-free=$HOME/.datomic-free/bin/datomic-free
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
+
+export PATH="$HOME/.cargo/bin:$PATH"
