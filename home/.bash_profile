@@ -1,6 +1,7 @@
 export EDITOR="/usr/bin/vim"
+export PYENV_ROOT="$HOME/.pyenv"
 
-export PATH=$HOME/bin:$HOME/Library/Haskell/bin:$PATH:$HOME/depot_tools
+export PATH=$PYENV_ROOT/bin:$HOME/bin:$HOME/Library/Haskell/bin:$PATH:$HOME/depot_tools
 
 # virtualenv goodness
 #source /usr/local/bin/virtualenvwrapper.sh
@@ -34,8 +35,6 @@ alias bs="bundle exec jekyll build --no-watch --config _config.yml,_config_stagi
 # added by Anaconda3 4.2.0 installer
 export PATH="/Users/jrheard/anaconda/bin:$PATH"
 
-source ~/dev/fastai/courses/setup/aws-alias.sh
-
 alias datomic-free=$HOME/.datomic-free/bin/datomic-free
 
 # Setting PATH for Python 3.6
@@ -44,3 +43,23 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# rr
+
+eval "$(pyenv init -)"
+
+export PIPENV_PYTHON=$PYENV_ROOT/shims/python
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+HISTSIZE=
+HISTFILESIZE=
+
+export HISTCONTROL=ignoreboth:erasedups
+
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+
+alias annotations='find . -iname "*.py" | xargs grep -ir def | grep -ir " -> "'

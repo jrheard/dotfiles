@@ -1,84 +1,33 @@
-function __git_upstream_configured
-    git rev-parse --abbrev-ref @"{u}" > /dev/null 2>&1
-end
+function fish_prompt
+	# Store the exit code of the last command
+	set -g sf_exit_code $status
+	set -g SPACEFISH_VERSION 2.7.0
 
-function git_is_repo -d "Check if directory is a repository"
-  test -d .git; or command git rev-parse --git-dir >/dev/null ^/dev/null
-end
+	# ------------------------------------------------------------------------------
+	# Configuration
+	# ------------------------------------------------------------------------------
 
-function git_branch_name -d "Get current branch name"
-  git_is_repo; and begin
-    command git symbolic-ref --short HEAD ^/dev/null;
-      or command git show-ref --head -s --abbrev | head -n1 ^/dev/null
-  end
-end
+	__sf_util_set_default SPACEFISH_PROMPT_ADD_NEWLINE true
+	__sf_util_set_default SPACEFISH_PROMPT_FIRST_PREFIX_SHOW false
+	__sf_util_set_default SPACEFISH_PROMPT_PREFIXES_SHOW true
+	__sf_util_set_default SPACEFISH_PROMPT_SUFFIXES_SHOW true
+	__sf_util_set_default SPACEFISH_PROMPT_DEFAULT_PREFIX "via "
+	__sf_util_set_default SPACEFISH_PROMPT_DEFAULT_SUFFIX " "
+	__sf_util_set_default SPACEFISH_PROMPT_ORDER time user dir host git package node ruby golang php rust haskell julia elixir docker aws venv conda pyenv dotnet kubecontext exec_time line_sep battery vi_mode jobs exit_code char
 
-function git_is_staged -d "Check if repo has staged changes"
-  git_is_repo; and begin
-    not command git diff --cached --no-ext-diff --quiet --exit-code
-  end
-end
+	# ------------------------------------------------------------------------------
+	# Sections
+	# ------------------------------------------------------------------------------
 
-function git_is_dirty -d "Check if there are changes to tracked files"
-  git_is_repo; and not command git diff --no-ext-diff --quiet --exit-code
-end
+	# Keep track of whether the prompt has already been opened
+	set -g sf_prompt_opened $SPACEFISH_PROMPT_FIRST_PREFIX_SHOW
 
-function git_is_touched -d "Check if repo has any changes"
-  git_is_repo; and begin
-    test -n (echo (command git status --porcelain))
-  end
-end
+	if test "$SPACEFISH_PROMPT_ADD_NEWLINE" = "true"
+		echo
+	end
 
-function fish_prompt --description 'Write out the prompt'
-	set -l color_cwd
-    set -l suffix
-    switch "$USER"
-        case root toor
-            if set -q fish_color_cwd_root
-                set color_cwd $fish_color_cwd_root
-            else
-                set color_cwd $fish_color_cwd
-            end
-            set suffix '#'
-        case '*'
-            set color_cwd $fish_color_cwd
-            set suffix '>'
-    end
-
-	echo -n [
-
-	set_color 76F9FB
-	echo -n "$USER"
+	for i in $SPACEFISH_PROMPT_ORDER
+		eval __sf_section_$i
+	end
 	set_color normal
-
-	echo -n -s @ (prompt_hostname) ':'
-
-	set_color $color_cwd
-	echo -n (prompt_pwd)
-	set_color normal
-
-	echo -n  "] "
-
-	if git_is_repo
-		set_color FEF867
-
-		echo -n -s "(" (git_branch_name)
-
-        if git_is_touched
-            if git_is_staged
-                if git_is_dirty
-                    echo -n " ±"
-                else
-                    echo -n " +"
-                end
-            else if git_is_dirty
-                echo -n " *"
-            end
-        end
-
-		echo -n ") "
-		set_color normal
-    end
-
-	echo -n "🚂  "
 end
