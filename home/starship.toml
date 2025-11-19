@@ -1,0 +1,122 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """
+[\\[]($style)\
+$username\
+$hostname\
+$directory\
+[\\]]($style) \
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$package\
+$nodejs\
+$docker_context\
+$ruby\
+$golang\
+$php\
+$rust\
+$haskell\
+$julia\
+$aws\
+$conda\
+$python\
+$cmd_duration\
+$line_break\
+$battery\
+$jobs\
+$status\
+$character\
+"""
+
+# User configuration - always show with custom prefix/suffix
+[username]
+show_always = true
+format = "[$user]($style)@"
+style_user = "bold yellow"
+style_root = "bold red"
+
+# Hostname - always show with custom suffix
+[hostname]
+ssh_only = false
+format = "[$hostname]($style):"
+style = "bold green"
+
+# Directory - custom suffix handled in format above with the ]
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = "bold cyan"
+truncation_length = 3
+
+# Git modules - no prefix
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "bold purple"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "bold red"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[git_commit]
+format = '[\($hash$tag\)]($style) '
+
+[character]
+success_symbol = "[🚂](bold green)"
+error_symbol = "[🚂](bold red)"
+
+# Modules you want DISABLED
+[python]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[package]
+disabled = true
+
+# Other modules you're using
+[nodejs]
+format = "via [$symbol($version )]($style)"
+
+[golang]
+format = "via [$symbol($version )]($style)"
+
+[php]
+format = "via [$symbol($version )]($style)"
+
+[haskell]
+format = "via [$symbol($version )]($style)"
+
+[julia]
+format = "via [$symbol($version )]($style)"
+
+[aws]
+format = "on [$symbol($profile )(\\($region\\) )]($style)"
+
+[conda]
+format = "via [$symbol$environment]($style) "
+
+[cmd_duration]
+format = "took [$duration]($style) "
+
+[battery]
+format = "[$symbol$percentage]($style) "
+
+[jobs]
+format = "[$symbol$number]($style) "
+
+[status]
+disabled = false
+format = "[$symbol$status]($style) "
